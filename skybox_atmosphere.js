@@ -70,7 +70,7 @@ var SkyBox = function()
       {
 	displayName: 'Table in room',
         type: this.TYPE_RICOH_THETA,
-        prefix: 'eqrec/',
+        prefix: 'skyboxes/eqrec/',
         image: 'R0011312_20151110181801298.jpg',
         credits:`Taken by SS`
       },
@@ -78,7 +78,7 @@ var SkyBox = function()
       {
 	displayName: 'Inside Ultimaker',
         type: this.TYPE_RICOH_THETA,
-        prefix: 'eqrec/',
+        prefix: 'skyboxes/eqrec/',
         image: 'R0011314_20151110181154665.jpg',
         credits:`By SS`
       },
@@ -86,7 +86,7 @@ var SkyBox = function()
       {
 	displayName: 'Wrecked hut',
         type: this.TYPE_EQUIRECT,
-        prefix: 'eqrec/',
+        prefix: 'skyboxes/eqrec/',
         image: '2294472375_24a3b8ef46_o.jpg',
         credits:`Unknown. See https://github.com/mrdoob/three.js/`
       },
