@@ -4,7 +4,10 @@
 // Customisable Skybox
 var SkyBox = function()
 {
-    this.preprefix = 'plugins/SkyBoxAtmosphere/';
+    //this.preprefix = 'plugins/SkyBoxAtmosphere/';
+    //https://github.com/sohale/SkyBoxAtmosphere/raw/master/skyboxes/Bridge2/negx.jpg
+    //this.preprefix = 'https://github.com/sohale/SkyBoxAtmosphere/raw/master/';  // will not work because of https cross-domain request
+    this.preprefix = 'plugins/SkyBoxAtmosphere/';  // move the plugins folder into public
 
     const POSXYZ = ['posx.jpg', 'posy.jpg', 'posz.jpg', 'negx.jpg', 'negy.jpg', 'negz.jpg' ];
     const PXYZ = ['px.jpg', 'py.jpg', 'pz.jpg', 'nx.jpg', 'ny.jpg', 'nz.jpg' ];
