@@ -35,7 +35,7 @@ var SkyBox = function()
         type: this.TYPE_SEPARATE6,
         prefix: 'skyboxes/Park2/',
         sides: POSXYZ,
-        credits=`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
+        credits:`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
       },
 
       {
@@ -43,7 +43,7 @@ var SkyBox = function()
         type: this.TYPE_SEPARATE6,
         prefix: 'skyboxes/Park3Med/',
         sides: PXYZ,
-        credits=`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
+        credits:`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
       },
 
       {
@@ -51,7 +51,7 @@ var SkyBox = function()
         type: this.TYPE_SEPARATE6,
         prefix: 'skyboxes/SwedishRoyalCastle/',
         sides: PXYZ,
-        credits=`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
+        credits:`This is the work of Emil Persson, aka Humus. http://www.humus.name humus@comhem.se`
       },
 
 	/*
@@ -65,14 +65,14 @@ var SkyBox = function()
 	pisa
 	*/
 
-eqrec/R0011312_20151110181801298.jpg 
+	//eqrec/R0011312_20151110181801298.jpg 
 
       {
 	displayName: 'Table in room',
         type: this.TYPE_RICOH_THETA,
         prefix: 'eqrec/',
         image: 'R0011312_20151110181801298.jpg',
-        credits=`Taken by SS`
+        credits:`Taken by SS`
       },
 
       {
@@ -80,7 +80,7 @@ eqrec/R0011312_20151110181801298.jpg
         type: this.TYPE_RICOH_THETA,
         prefix: 'eqrec/',
         image: 'R0011314_20151110181154665.jpg',
-        credits=`By SS`
+        credits:`By SS`
       },
 
       {
@@ -88,10 +88,10 @@ eqrec/R0011312_20151110181801298.jpg
         type: this.TYPE_EQUIRECT,
         prefix: 'eqrec/',
         image: '2294472375_24a3b8ef46_o.jpg',
-        credits=`Unknown. See https://github.com/mrdoob/three.js/`
+        credits:`Unknown. See https://github.com/mrdoob/three.js/`
       },
 
-/2294472375_24a3b8ef46_o.jpg 
+	// /2294472375_24a3b8ef46_o.jpg 
 
     ];
 };
@@ -230,7 +230,7 @@ SkyBox.prototype.show = function (){
 
 	if (chosen.type == this.TYPE_SEPARATE6) {
 	var prefix = this.preprefix + chosen.prefix;
-	assert(chosen.prefix[chosen.prefix.length-2] == '/');
+	assert(chosen.prefix[chosen.prefix.length-1] == '/');
         var sidesimagepaths = [];
         for ( var i=0; i< 6; ++i) {
 	    sidesimagepaths.push( prefix + chosen.sides[i] );
