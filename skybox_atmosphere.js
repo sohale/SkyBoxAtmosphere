@@ -9,8 +9,14 @@ var SkyBox = function()
     //this.preprefix = 'https://github.com/sohale/SkyBoxAtmosphere/raw/master/';  // will not work because of https cross-domain request
     this.preprefix = 'plugins/SkyBoxAtmosphere/';  // move the plugins folder into public
 
-    const POSXYZ = ['posx.jpg', 'posy.jpg', 'posz.jpg', 'negx.jpg', 'negy.jpg', 'negz.jpg' ];
-    const PXYZ = ['px.jpg', 'py.jpg', 'pz.jpg', 'nx.jpg', 'ny.jpg', 'nz.jpg' ];
+    // const POSXYZ = ['posx.jpg', 'posy.jpg', 'posz.jpg', 'negx.jpg', 'negy.jpg', 'negz.jpg' ];
+    //const PXYZ = ['px.jpg', 'py.jpg', 'pz.jpg', 'nx.jpg', 'ny.jpg', 'nz.jpg' ];
+    // const PXYZ = ['px.jpg','nx.jpg','nz.jpg','pz.jpg','py.jpg','ny.jpg'];
+    const PXYZ = ['px.jpg','nx.jpg','py.jpg','ny.jpg','pz.jpg','nz.jpg'];
+    const POSXYZ = ['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg' ];
+    //fixme: Camera's Up needs to be on Z axis.
+
+
     // enum:
     this.TYPE_SEPARATE6 = "separate 6 skybox sides";
     this.TYPE_EQUIRECT = "Equirectangular";
@@ -97,6 +103,10 @@ var SkyBox = function()
 	// /2294472375_24a3b8ef46_o.jpg 
 
     ];
+    this.chosen_idx = 1;
+    this.shown = false;
+
+    console.info(this.getInfo());
 };
 
 SkyBox.prototype = Object.create(AtmospherPlugin.prototype);
@@ -109,7 +119,8 @@ SkyBox.initLoadtime = function (){
 };
 
 SkyBox.prototype.init = function (SHADOW_MAP_WIDTH, SHADOW_MAP_HEIGHT){
-    this.shown=false;
+    _expect(!this.shown); //already
+    this.shown = false;
     assert(SHADOW_MAP_WIDTH);
     assert(SHADOW_MAP_HEIGHT);
     this.SHADOW_MAP_WIDTH = SHADOW_MAP_WIDTH;
@@ -228,7 +239,6 @@ SkyBox.prototype.show = function (){
         }
         this.initLights(-110*5, -90*5, 126*5, 0xff4444, 1.5, this.SHADOW_MAP_WIDTH, this.SHADOW_MAP_HEIGHT);
 
-	var chosen_idx = 1;
 	var chosen = this.availableSkyboxes[chosen_idx];
 
 	if (chosen.type == this.TYPE_SEPARATE6) {
@@ -264,7 +274,7 @@ SkyBox.prototype.show = function (){
 
     renderer.setClearColor(0xffffff); // why?
     this.status = "SkyBoxAtmospher up and running";
-    console.info("ENV MAP CREDITS: ", chosen.credits);
+    console.info(this.getInfo());
 };
 
 SkyBox.prototype.hide = function(){
@@ -305,7 +315,16 @@ SkyBox.prototype.setShadowQuality = function(shadowMapWidth, shadowMapHeight){
     this.light.shadowMap = null;
 };
 
-SkyBox.prototype.getInfo = function(){ return "SkyBox plugin. (c) 2015. " + this.status;}; //Download or clone from github.com/8adam95/cloudySky.git into DesignSoftware/plugins.
+SkyBox.prototype.getInfo = function(){
+    // Show current sky map
+    var chosen = this.availableSkyboxes[chosen_idx];
+
+    var info = [];
+    info.concat(["SkyBox plugin. (c) 2016.  https://github.com/sohale/SkyBoxAtmosphere "]);
+    if (chosen)
+        info.concat(["ENV MAP CREDITS: ", chosen.credits]);
+    info.concat(["status", this.status]);
+}; 
 
 SkyBox.initLoadtime();
 
